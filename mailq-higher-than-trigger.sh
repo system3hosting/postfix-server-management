@@ -1,8 +1,6 @@
 #!/bin/bash
 MAILQ="$(mailq | tail -1  | awk '{print $5}')"
-echo "${MAILQ}"
 MDMAILS="$(mailq | grep MAILER-DAEMON | wc -l)"
-echo "${MDMAILS}"
 THIRDMAILQ=$(($MAILQ/3))
 if [ $MDMAILS \> $THIRDMAILQ ];
 then
@@ -19,5 +17,5 @@ MDMAILS="$(mailq | grep MAILER-DAEMON | wc -l)"
 else
 	echo "Mailer Daemon Mails only" $MDMAILS "While Mail Queue is" $MAILQ "";
 fi;
-OLDESTEMAIL="postqueue -p | head -2 | tail -1 | awk '{ print $4, $5 }'"
+OLDESTEMAIL="$(postqueue -p | head -2 | tail -1 | awk '{ print $4, $5 }')"
 echo "Currently the Oldest Email in Queue is from" $OLDESTEMAIL;
