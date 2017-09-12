@@ -4,7 +4,7 @@ MDMAILS="$(mailq | grep MAILER-DAEMON | wc -l)"
 THIRDMAILQ=$(($MAILQ/3))
 if [ $MDMAILS \> $THIRDMAILQ ];
 then
-	echo "Mailer Daemon Mailes Nearly Third of Mail Queue";
+	echo "Mailer Daemon Mails are "$MDMAILS", which is nearly Third of Total Mail Queue of" $MAILQ;
 	echo "Will now Process Command to delete Mailer Daemon Emails";
 mailq | tail -n +2 | grep -v '^ *(' | awk  'BEGIN { RS = "" }
 # $7=sender, $8=recipient1, $9=recipient2
